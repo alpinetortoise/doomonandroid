@@ -10,9 +10,9 @@
 we first of all need to install emacs and termux predominantly to make things easier on us [[https://www.reddit.com/r/emacs/comments/16hwjby/how_to_get_graphical_not_termuxbased_emacs_on/][this tutorial]] makes things simple.
 
 For ease of use we install in Termux with
-#+begin_code bash
+#+begin_src sh
 pkg install git gh ripgrep fd llvm emacs
-#+end_code
+#+end_src
 
 the version of emacs just installed will be emacs 29, which will cause some issues, but we will overcome these later.
 
@@ -25,31 +25,31 @@ then we install Doom Emacs as per the wiki, we do this in termux.
 There is probably a nicer way of setting this up but what I essentially do is create a dotfile folder on my internal/external storage, and symlink sunflowers here to act as my .config folder under the Emacs user land area and termux user land area.
 
 We request file access for both termux and Emacs using termux-setup-storage and M-x android-request-directory-access (we can also enable this file system wide in settings > apps > special access > all files access) with this done we setup the suggested symlinks, (completely optional, just helps with continuity between apps)
-#+begin_code bash
+#+begin_src sh
 ln -s /path/to/storage/dotfiles/config /path/to/emacs/.config
 ln -s /path/to/storage/dotfiles/config /path/to/termux/.config
 
 # the following is just for ease of navigation back and forth
 ln -s /path/to/emacs /path/to/termux/emacs
 ln -s /path/to/termux /path/to/emacs/termux
-#+end_code
+#+end_src
 
 ** installing DooM emacs
 Because Emacs on Android is being developed from the Head of the emacs commits, what we find is that Emacs on Android is actually running emacs 30, while the version pulled in from termux is currently only 29, this is ok, we just need to account for it when syncing and installing.
 
-#+begin_code bash
+#+begin_src sh
 git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 cp .config/emacs/.local/etc/@/init.29.elc .config/emacs/.local/etc/@/init.30.elc
-#+end_code
+#+end_src
 
 ** Emacs version differences
 Of course once emacs 30 is officially released and termux updates its repositories to use emacs 30 rather than 29 the last line above will no longer be necessary.
 
 * Making it Android Friendly
-There are some nice additions that Emacs Android gives to increase usability.
+There are some nice additions that Emacs Android gives to increase usability. I found it best to add these to my config.el
 
-#+begin_code lisp
+#+begin_src lisp
 (custom-set-variables
 ;; provided by DooM emacs this is a simple variable that gives me at least a more usable sized typeface
   '(doom-big-font-mode t)
@@ -58,6 +58,8 @@ There are some nice additions that Emacs Android gives to increase usability.
 ;; finally it makes more sense for both bars to be found on the bottom rather than the top of the frame.
   '(tool-bar-mode t)
   '(tool-bar-position 'bottom)
-  '(modifier-bar-mode-t)
+  '(modifier-bar-mode t)
+;; This variable will enable the keyboard by default, useful for utilising keybindings
+  '(touch-screen-display-keyboard t)
 )
-#+end_code
+#+end_src
