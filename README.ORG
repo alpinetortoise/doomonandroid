@@ -1,17 +1,17 @@
 :PROPERTIES:
-:ID:       doomEmacsAndroid
+:ID:       e81bca6e-f3cd-4bbd-ba06-fcf3dd3e41a8
 :END:
+
+#+title: Doom Emacs on Android
+
+This is left more for information purposes, I currently am using [[https://github.com/bbatsov/prelude][Prelude]] as my emacs distribution and am developing [[id:bbaf0c25-45a2-4ed2-9dcd-204e28777a3a][Phonemacs]], a prelude-esque android specific collection of dotfiles
 
 * Termux and Emacs Preparation
-:PROPERTIES:
-:ID:       fe6dde6f-acfa-4285-834e-bfb8146c5b70
-:END:
-
 we first of all need to install emacs and termux predominantly to make things easier on us [[https://www.reddit.com/r/emacs/comments/16hwjby/how_to_get_graphical_not_termuxbased_emacs_on/][this tutorial]] makes things simple.
 
 For ease of use we install in Termux with
 #+begin_src sh
-pkg install git gh ripgrep fd llvm emacs
+   pkg install git gh ripgrep fd llvm emacs
 #+end_src
 
 the version of emacs just installed will be emacs 29, which will cause some issues, but we will overcome these later.
